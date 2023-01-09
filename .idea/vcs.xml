@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/hashlip/frontend_dapp/frontend_base_dapp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hashlip/generative-art-opensource/generative-art-opensource" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hashlip/hashlips_nft_minting_dapp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mint-dapp/Nft-Minter-Dapp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nft-minter-tutorial" vcs="Git" />
+  </component>
+</project>

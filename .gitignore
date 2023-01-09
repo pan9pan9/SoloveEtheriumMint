@@ -1,0 +1,5 @@
+*.env
+
+/infura/memeNFT/node_modules
+/nft-minter-tutorial/my-nft/node_modules
+/nft-minter-tutorial/minter-starter-files/node_modules
