@@ -27,15 +27,17 @@ then we could see a welcome message, select "Create an empty hardhat.config.js"
   Create a TypeScript project
 ❯  Create an empty hardhat.config.js
   Quit
-  '''
+'''
   
-  '''
-  npm install dotenv --save
-  npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
-  '''
-  ## Update .env file
-  '''
-  # ipfs 주소
+'''
+npm install dotenv --save
+npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
+'''
+
+## Update .env file
+
+'''
+# ipfs 주소
 BASE_URI = ""
 
 # url + alchemy api key
