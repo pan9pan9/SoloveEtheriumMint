@@ -36,7 +36,7 @@ PRIVATE_KEY = ""
 npx hardhat compile
 npx hardhat run scripts/deploy.js --network goerli
 ``` 
-# Ready to mint
+## Ready to mint
 
 Run the command below, then you can see your nfts at 'https://testnets.opensea.io/' or 'https://goerli.etherscan.io/'
 
