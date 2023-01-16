@@ -13,15 +13,13 @@ npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
 ## Update .env file
 
 fill the empty srings with your own values. We need metamask, alchemy account, and any ipfs urls that uploaded images and json files
-you need to fill contract_address after deploy contract
+
 ``` 
 BASE_URI = ""
 
 API_URL = "https://eth-goerli.alchemyapi.io/v2/YOUR-API-KEY"
 
 API_KEY = ""
-
-CONTRACT_ADDRESS = ""
 
 PUBLIC_ADDRESS = ""
 
