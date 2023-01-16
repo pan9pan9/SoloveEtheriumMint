@@ -3,14 +3,14 @@ basic minting functions includes both cli(infura) and client(alchemy)
 
 ## Install Dependencies
 
-'''
+``` 
 npm install --save-dev hardhat
 npx hardhat
-'''
+``` 
 
 then we could see a welcome message, select "Create an empty hardhat.config.js"
 
-'''
+``` 
 888    888                      888 888               888
 888    888                      888 888               888
 888    888                      888 888               888
@@ -27,49 +27,43 @@ then we could see a welcome message, select "Create an empty hardhat.config.js"
   Create a TypeScript project
 ❯  Create an empty hardhat.config.js
   Quit
-'''
+``` 
   
-'''
+``` 
 npm install dotenv --save
 npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
-'''
+``` 
 
 ## Update .env file
 
-'''
-# ipfs 주소
+``` 
 BASE_URI = ""
 
-# url + alchemy api key
 API_URL = "https://eth-goerli.alchemyapi.io/v2/YOUR-API-KEY"
 
-# alchemy api key
 API_KEY = ""
 
-# ethereum contract address
 CONTRACT_ADDRESS = ""
 
-# 메타마스크 public address
 PUBLIC_ADDRESS = ""
 
-# 메타마스크 private key
 PRIVATE_KEY = ""
-
-'''
+``` 
 
 fill the empty srings with your own values. We need metamask, alchemy account, and any ipfs urls that uploaded images and json files
 you need to fill contract_address after deploy contract
 
 ## Compile and Deploy Contract
 
-'''
+``` 
 npx hardhat compile
 npx hardhat run scripts/deploy.js --network goerli
-'''
+``` 
 # Ready to mint
-'''
+Run the command below, you can see your nfts at 'https://testnets.opensea.io/' or 'https://goerli.etherscan.io/'
+``` 
 npx hardhat run scripts/interact_solove.js --network goerli
-'''
+``` 
   
   
   
