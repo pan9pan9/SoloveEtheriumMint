@@ -1,10 +1,12 @@
 // interact.js
+require('dotenv').config()
 
-const API_KEY = process.env.API_KEY;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
-const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
-
-const contract = require("../artifacts/contracts/HelloWorld.sol/HelloWorld.json");
+const API_KEY = process.env.API_KEY
+const PRIVATE_KEY = process.env.PRIVATE_KEY
+const CONTRACT_ADDRESS = require("../contractAddress.json").address;
+const PUBLIC_ADDRESS = process.env.PUBLIC_ADDRESS
+const contract = require("../artifacts/contracts/Solove.sol/Solove.json");
+const {ethers} = require("ethers");
 
 // provider - Alchemy
 const alchemyProvider = new ethers.providers.AlchemyProvider(network="goerli", API_KEY);
@@ -15,16 +17,30 @@ const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
 // contract instance
 const helloWorldContract = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
 
-async function main() {
-    const message = await helloWorldContract.message();
-    console.log("The message is: " + message);
 
-    console.log("Updating the message...");
-    const tx = await helloWorldContract.update("this is the new message");
-    await tx.wait();
+const getEtheriumContract = () => {
+    const connectedAccount = PUBLIC_ADDRESS
 
-    const newMessage = await helloWorldContract.message();
-    console.log("The new message is: " + newMessage);
+    if (connectedAccount) {
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const signer = provider.getSigner()
+        const contract = new ethers.Contract(contractAddress, contractAbi, signer)
+
+        return contract
+    } else {
+        return getGlobalState('contract')
+    }
 }
 
-main();
+async function payToMint() {
+    const connectedAccount = PUBLIC_ADDRESS
+    const contract = helloWorldContract
+    const amount = ethers.utils.parseEther('0.001')
+
+    await contract.payToMint({
+        from: connectedAccount,
+        value: amount._hex,
+    })
+}
+
+payToMint();

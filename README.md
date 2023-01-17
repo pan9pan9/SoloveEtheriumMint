@@ -39,7 +39,7 @@ npx hardhat run scripts/deploy.js --network goerli
 Run the command below, then you can see your nfts at 'https://testnets.opensea.io/' or 'https://goerli.etherscan.io/'
 
 ``` 
-npx hardhat run scripts/interact_solove.js --network goerli
+npx hardhat run scripts/interact.js --network goerli
 ``` 
   
   

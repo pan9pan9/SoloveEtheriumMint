@@ -1,41 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\USER\\WebstormProjects\\Ethereum_mint_dapp\\contracts\\HelloWorld.sol": {
-      "lastModificationDate": 1673845446236,
-      "contentHash": "bceb088cd25dfe00c36873715b55ed16",
-      "sourceName": "contracts/HelloWorld.sol",
-      "solcConfig": {
-        "version": "0.8.11",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.7.0 <0.9.0"
-      ],
-      "artifacts": [
-        "HelloWorld"
-      ]
-    },
     "C:\\Users\\USER\\WebstormProjects\\Ethereum_mint_dapp\\contracts\\Solove.sol": {
       "lastModificationDate": 1673849765777,
       "contentHash": "3910ae45243e41b963b3e350ffd154af",
@@ -550,6 +515,81 @@
       ],
       "artifacts": [
         "Math"
+      ]
+    },
+    "C:\\Users\\USER\\WebstormProjects\\Ethereum_mint_dapp\\contracts\\WhitelistSale.sol": {
+      "lastModificationDate": 1673944697121,
+      "contentHash": "0b50e3195c2d4f18eec91a3c348a8a13",
+      "sourceName": "contracts/WhitelistSale.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "WhitelistSale"
+      ]
+    },
+    "C:\\Users\\USER\\WebstormProjects\\Ethereum_mint_dapp\\node_modules\\@openzeppelin\\contracts\\utils\\cryptography\\MerkleProof.sol": {
+      "lastModificationDate": 1673843279083,
+      "contentHash": "a75542fc722f3c5c883583228040bbfe",
+      "sourceName": "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "MerkleProof"
       ]
     }
   }
