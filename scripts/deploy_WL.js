@@ -5,7 +5,7 @@ require('dotenv').config()
 async function main() {
     const base_uri = process.env.BASE_URI
     const Contract = await ethers.getContractFactory('WhitelistSale')
-    const contract = await Contract.deploy('Solove', 'SOL', base_uri, "0xf0b8c3c9b71ed496a5b997e8e3a9ed3e9b9bab460f8b99f6a9d51e41dd4cf9c8")
+    const contract = await Contract.deploy('WL_TEST', 'WL', base_uri, "0xf89d9909a39ae3db694075d1d2233becf943363a6de42e3bfbfd056638494ee4")
 
     await contract.deployed()
     const address = JSON.stringify({ address: contract.address }, null, 4)

@@ -53,15 +53,12 @@ contract WhitelistSale is ERC721Enumerable, Ownable {
         return bytes32(uint256(uint160(addr)));
     }
 
-    function payToMint(uint256 _mintAmount, bytes32[] calldata _merkleProof) public payable {
+    function payToMint(bytes32[] calldata _merkleProof) public payable {
         uint256 supply = totalSupply();
         require(!paused, "NFTs under maintenance!");
         require(supply <= maxSupply, "Sorry, all NFTs have been minted!");
-        require(_mintAmount > 0 ether, "Ether too low for minting!");
+        require(msg.value > 0 ether, "Ether too low for minting!");
 
-        if (_msgSender() != owner()) {
-            require(_mintAmount >= cost);
-        }
 
         // WL parts
         require(!whitelistClaimed[msg.sender], "Address already claimed");
@@ -71,19 +68,23 @@ contract WhitelistSale is ERC721Enumerable, Ownable {
         whitelistClaimed[msg.sender] = true;
         //
 
+        if (msg.sender != owner()) {
+            require(msg.value >= cost);
+        }
+
         _safeMint(msg.sender, supply + 1);
 
         minted.push(
             SaleStruct(
                 supply + 1,
                 msg.sender,
-                _mintAmount,
+                msg.value,
                 toImage(supply + 1),
                 block.timestamp
             )
         );
 
-        emit Sale(supply, msg.sender, _mintAmount, tokenURI(supply + 1), block.timestamp);
+        emit Sale(supply, msg.sender, msg.value, tokenURI(supply + 1), block.timestamp);
     }
 
     function tokenURI(uint256 tokenId)

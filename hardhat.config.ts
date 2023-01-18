@@ -13,8 +13,8 @@ module.exports = {
   networks: {
     hardhat: {},
     goerli: {
-      url: "https://eth-goerli.alchemyapi.io/v2/CadMuxF9mnzGWq1fyhEpIOHAUAN77jd5",
-      accounts: [`0x71a9e82dffe5bfa5433a4f6f29e9564d3fab6093783ed9f968c28ce84e38e979`]
+      url: API_URL,
+      accounts: [`0x${PRIVATE_KEY}`]
     }
   },
 }

@@ -7,8 +7,7 @@ const CONTRACT_ADDRESS = require("../contractAddress_WL.json").address;
 const PUBLIC_ADDRESS = process.env.PUBLIC_ADDRESS
 const contract = require("../artifacts/contracts/WhitelistSale.sol/WhitelistSale.json");
 const {ethers} = require("ethers");
-const { MerkleTree } = require("merkletreejs");
-const { keccak256 } = ethers.utils;
+
 
 const whitelisted = [
     "0x79Ea2d536b5b7144A3EabdC6A7E43130199291c0",
@@ -26,20 +25,19 @@ const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
 // contract instance
 const helloWorldContract = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
 
-// Merkle Tree
-const tree = new MerkleTree(leaves, keccak256, { sort: true });
-const merkleProof = tree.getHexProof(padBuffer(whitelisted[0].address));
 
 async function payToMint() {
     const connectedAccount = PUBLIC_ADDRESS
     const contract = helloWorldContract
     const amount = ethers.utils.parseEther('0.001')
 
-    await contract.payToMint(amount, [
-            '0x08bb9ce92be20031b31597d37daa1c710227e4102c89b5437053cdc1462b1737',
-            '0x702d0f86c1baf15ac2b8aae489113b59d27419b751fbf7da0ef0bae4688abc7a',
-            '0xb159efe4c3ee94e91cc5740b9dbb26fc5ef48a14b53ad84d591d0eb3d65891ab'
-        ]
+    await contract.payToMint([
+            '0xe0858ad5cab09e823c8559437a93634ff6d72b980375d8b6b5858caf806eaaca'
+        ],
+        {
+            from: connectedAccount,
+            value: amount._hex,
+        }
     )
 }
 

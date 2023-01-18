@@ -5,7 +5,7 @@ const API_KEY = process.env.API_KEY
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 const CONTRACT_ADDRESS = require("../contractAddress.json").address;
 const PUBLIC_ADDRESS = process.env.PUBLIC_ADDRESS
-const contract = require("../artifacts/contracts/Solove.sol/Solove.json");
+const contract = require("../artifacts/contracts/Solove.sol/Solove_test.json");
 const {ethers} = require("ethers");
 
 // provider - Alchemy
