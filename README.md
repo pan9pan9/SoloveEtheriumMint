@@ -49,12 +49,12 @@ npx hardhat run scripts/interact.js --network goerli
 
 modify the
 
-CONTRACT_ADDRESS
-PUBLIC_ADDRESS
-ALCHEMYAPI ADDRESS
+CONTRACT_ADDRESS, 
+PUBLIC_ADDRESS, 
+ALCHEMYAPI ADDRESS, 
 METAMASK PRIVATE KEY
 
-and
+and in terminal
 
 ``` 
 cd solove
