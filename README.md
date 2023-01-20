@@ -43,4 +43,22 @@ npx hardhat run scripts/interact.js --network goerli
 ``` 
   
   
-  
+### Webpage start
+
+/solove/src/App.js
+
+modify the
+
+CONTRACT_ADDRESS, 
+PUBLIC_ADDRESS, 
+ALCHEMYAPI ADDRESS, 
+METAMASK PRIVATE KEY
+
+and in terminal
+
+``` 
+cd solove
+npm install
+npm start
+``` 
+
