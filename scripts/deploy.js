@@ -1,5 +1,6 @@
 const { ethers } = require('hardhat')
 const fs = require('fs')
+const { solidity } = require('../hardhat.config')
 require('dotenv').config()
 
 async function main() {
