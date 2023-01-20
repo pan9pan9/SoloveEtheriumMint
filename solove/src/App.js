@@ -1,88 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./App.css";
-import { ethers } from "ethers";
+import { ethers, getDefaultProvider } from "ethers";
 import Solove from './Solove.json';
 
-const getEthereumObject = () => window.ethereum;
 
-/*
- * This function returns the first linked account found.
- * If there is no account linked, it will return null.
- */
-const findMetaMaskAccount = async () => {
-  try {
-    const ethereum = getEthereumObject();
-
-    /*
-    * First make sure we have access to the Ethereum object.
-    */
-    if (!ethereum) {
-      console.error("Make sure you have Metamask!");
-      return null;
-    }
-
-    console.log("We have the Ethereum object", ethereum);
-    const accounts = await ethereum.request({ method: "eth_accounts" });
-
-    if (accounts.length !== 0) {
-      const account = accounts[0];
-      console.log("Found an authorized account:", account);
-      return account;
-    } else {
-      console.error("No authorized account found");
-      return null;
-    }
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
 
 const App = () => {
-  const [currentAccount, setCurrentAccount] = useState("");
-
-  /*
-   * The passed callback function will be run when the page loads.
-   * More technically, when the App component "mounts".
-   */
-  useEffect(() => {
-    findMetaMaskAccount().then((account) => {
-      if (account !== null) {
-        setCurrentAccount(account);
-      }
-    });
-  }, []);
-
-  const connectWallet = async () => {
+  const [provider, setProvider] = useState(undefined);
+  const [signer, setSigner] = useState(undefined);
+  const [walletAddress, setWalletAddress] = useState(undefined)
+  const [currentBalance, setCurrentBalance] = useState(undefined)
+  const [chainId, setChainId] = useState(undefined)
+  const result = [];
+  const connectWallet = useCallback(async () => {
     try {
-      const ethereum = getEthereumObject();
-      if (!ethereum) {
-        alert("Get MetaMask!");
-        return;
+      if(typeof window.ethereum !== 'undefined') {
+        const provider = await new ethers.providers.Web3Provider(
+          window.ethereum
+           );
+        setProvider(provider);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        setSigner(signer)
+
+        const result = await Promise.all([
+          signer.getAddress(),
+          signer.getBalance(),
+          signer.getChainId()
+        ])
+
+        setWalletAddress(result[0]) // address
+        setCurrentBalance(Number(result[1])) //Balance
+        setChainId(result[2]) // ChainId
+        console.log(result[0]);
+        console.log(result[1]);
+        console.log(result[2]);
+      } else {
+        alert("please install MetaMask")
       }
-
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-
-      console.log("Connected", accounts[0]);
-      setCurrentAccount(accounts[0]);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
-  };
+  },[])
+
+  
+
 
   const askContractToMintNft = async () => {  
     try {
       const { ethereum } = window;
   
       if (ethereum) {
-        const CONTRACT_ADDRESS = "0xA8A3521a86Fa3b4c5f497a676dB33Cc2747FB30B"  // contract 주소
-        const PUBLIC_ADDRESS = "0x167C7010D50C88915C787f0503bE4f4D18028b35" // 받는사람 지갑주소
+        const CONTRACT_ADDRESS = "0x82b6b883D0CCcc2cE1C74baA629F83A3294460cd" // contract address
+        const PUBLIC_ADDRESS = result[0]; //지갑주소
         const {ethers} = require("ethers");
-        const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", "cmz9ptl4wYGJxw-4MDZRHaAHGY7N42eH"); //알케미 api 주소
-        const signer = new ethers.Wallet("f6f92dadcfbed58f4207255702f49a1b6ed71de0a591c80a56c0a568b3a83d07", alchemyProvider); // 메타마스크 비공개키
-        const contract = new ethers.Contract(CONTRACT_ADDRESS, Solove.abi, signer); 
+        const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", "ciwXbQ8IjvLpPlqk04Md8GdGzSwN6JCV"); //alchemy api
+        const signer = new ethers.Wallet("f6f92dadcfbed58f4207255702f49a1b6ed71de0a591c80a56c0a568b3a83d07", alchemyProvider);
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, Solove.abi, signer);
         const amount = ethers.utils.parseEther('0.001')
 
         console.log("Going to pop wallet now to pay gas...")
@@ -113,7 +87,8 @@ const App = () => {
 
         <button className="waveButton" onClick={connectWallet}>
           Connect Wallet
-        </button>
+        </button> 
+
         <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
           Mint NFT
         </button>
